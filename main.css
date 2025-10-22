@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap");
+
+body {
+  font-family: "Orbitron", sans-serif;
+  background: radial-gradient(circle at center, #030c1a 0%, #000000 100%);
+  color: #00ffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  background: rgba(0, 30, 50, 0.7);
+  padding: 50px 80px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.container:hover {
+  transform: scale(1.02);
+}
+
+h1 {
+  font-size: 2rem;
+  text-shadow: 0 0 10px #00ffff;
+  margin-bottom: 35px;
+  letter-spacing: 2px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+button {
+  background: transparent;
+  border: 1px solid #00ffff;
+  color: #00ffff;
+  padding: 14px 40px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: rgba(0, 255, 255, 0.15);
+  box-shadow: 0 0 15px #00ffff;
+  transform: scale(1.05);
+}
+
+.logout-btn {
+  margin-top: 30px;
+  border: 1px solid #ff4444;
+  color: #ff4444;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 0, 0, 0.15);
+  box-shadow: 0 0 15px #ff4444;
+}

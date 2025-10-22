@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Production Report</title>
+  <link rel="stylesheet" href="main.css"/>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const loggedIn = sessionStorage.getItem("loggedIn");
+      if (loggedIn !== "true") {
+        window.location.href = "login.html";
+      }
+    });
+
+    function logout() {
+      sessionStorage.removeItem("loggedIn");
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Production Systems Console</h1>
+
+    <div class="button-container">
+      <button onclick="window.location.href='WJM/wjm_production.html'">WJM Production</button>
+      <button onclick="window.location.href='ANGLO/anglo_production.html'">Anglo Production</button>
+      <button onclick="window.location.href='YARN/yarn_production.html'">Yarn Production</button>
+    </div>
+
+    <div class="logout-container">
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+</body>
+</html>

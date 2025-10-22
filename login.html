@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - AI Champdany Industries Limited</title>
+  <link rel="stylesheet" href="login.css" />
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (sessionStorage.getItem("loggedIn") === "true") {
+        window.location.href = "index.html";
+      }
+    });
+
+    function handleLogin(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (username === "admin" && password === "1234") {
+        sessionStorage.setItem("loggedIn", "true");
+        window.location.href = "index.html"; 
+        return false;
+      } else {
+        alert("Access Denied — Invalid Credentials.");
+        return false;
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+
+  <div class="login-container">
+    <h1 >AI CHAMPDANY INDUSTRIES LIMITED</h1>
+    <span class="corner tl"></span>
+    <span class="corner tr"></span>
+    <span class="corner bl"></span>
+    <span class="corner br"></span>
+    <form id="loginForm" onsubmit="return handleLogin(event)">
+      <input type="text" id="username" placeholder="Username" required />
+      <br />
+      <input type="password" id="password" placeholder="Password" required />
+      <br />
+      <button type="submit" class="login-btn">Access Report</button>
+    </form>
+  </div>
+  
+</body>
+</html>

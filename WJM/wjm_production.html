@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const loggedIn = sessionStorage.getItem("loggedIn");
+      if (loggedIn !== "true") {
+        window.location.href = "../login.html";
+      }
+    });
+
+    window.addEventListener("beforeunload", () => {
+      sessionStorage.removeItem("loggedIn");
+    });
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Production Data Viewer</title>
+  <link rel="stylesheet" href="style3.css"/>
+</head>
+<body>
+  <h1 class="header_css">Production Data Viewer</h1>
+
+  <label for="selectmonth">Select Month</label>
+  <select id="selectmonth"></select>
+
+  <label for="startDatecalender">Start Date (DD-MM-YYYY):</label>
+  <input type="text" id="startDatecalender" placeholder="DD-MM-YYYY" />
+
+  <label for="endDatecalender">End Date (optional):</label>
+  <input type="text" id="endDatecalender" placeholder="DD-MM-YYYY" />
+
+  <div style="margin-top: 20px;">
+    <button id="productwise" class="productwise">Product Wise</button>
+    <button style ="margin-left: 70px;" onclick="loadAndFilterDataWrapper()">Load Data</button>
+    <button style ="margin-left: 70px;" onclick="initSalableProductionWrapper()">Salable Production</button>
+    
+
+    <div id="productButtons" class="productButtons" style="display: none; margin-top: 10px;">
+    <button onclick="showSpinningProd()">Spinning Prod</button>
+    <button onclick="showTwistingProd()">Twisting Prod</button>
+    <button onclick="showWeavingProd()">Weaving Prod</button>
+    <button onclick="showSpoolWinding()">Spool Winding Stock</button>
+    <button onclick="showCopWinding()">Cop Winding Stock</button>
+  </div>
+
+  </div>
+
+  <div id="defaultOutputView" style="display: block;">
+    <div id="output"></div>
+    <button id="exportBtn" style="display:none;" onclick="exportToExcel()">Export to Excel</button>
+  </div>
+
+  <div id="salableOutputView" style="display: none;">
+    <div id="salableOutput"></div>
+    <button id="salableExportBtn" style="display:none;">Export Salable Data</button>
+  </div>
+
+  <script src="lib/xlsx.full.min.js"></script>
+
+  <script src="script.js"></script>
+  <script src="script2.js"></script>
+  <!--<script src="script3.js"></script>-->
+  <script src = "final_script.js"></script>
+
+  <script>
+    function loadAndFilterDataWrapper() {
+      document.getElementById("defaultOutputView").style.display = "block";
+      document.getElementById("salableOutputView").style.display = "none";
+      loadAndFilterData();
+    }
+
+    function initSalableProductionWrapper() {
+      document.getElementById("defaultOutputView").style.display = "none";
+      document.getElementById("salableOutputView").style.display = "block";
+      initSalableProduction();
+    }
+
+    document.getElementById("productwise").addEventListener("mouseenter", () => {
+      const productButtons = document.getElementById("productButtons");
+      productButtons.style.display = "flex";
+
+      const buttons = productButtons.querySelectorAll("button");
+      buttons.forEach((btn, index) => {
+        btn.style.animation = "none";
+        setTimeout(() => {
+          btn.style.animation = `fadeInButton 0.4s ease forwards`;
+          btn.style.animationDelay = `${index * 0.15}s`;
+        }, 10);
+      });
+    });
+
+    document.getElementById("productwise").addEventListener("mouseleave", (e) => {
+      const productButtons = document.getElementById("productButtons");
+      setTimeout(() => {
+        if (!productButtons.matches(':hover')) {
+          productButtons.style.display = "none";
+        }
+      }, 50);
+    });
+
+    document.getElementById("productButtons").addEventListener("mouseleave", () => {
+      document.getElementById("productButtons").style.display = "none";
+    });
+
+
+  </script>
+</body>
+</html>
